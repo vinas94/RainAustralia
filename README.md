@@ -29,7 +29,7 @@ Extra care is taken to avoid any data leakage. Notebook runs once and saves the 
 - a number of custom functions and the LSTM model itself is stored in the `custom.py` script
 - all of the metadata + artefacts (such as loss/accuracy curves) are stored in [Neptune](https://app.neptune.ai/vinas94/RainAustralia/experiments?split=tbl&dash=Dashboard-1c94a424-6e34-4147-b965-f54b9fe0bfde&viewId=fe1fb5c5-89b0-4603-8cb1-a773788aa13c):
 
-<img src="./AML-Rain-LSTM/Plots/neptune.png">
+<img src="./Plots/neptune.png">
 
 <br>
 
@@ -65,7 +65,7 @@ to improve performance. Two of these runs (run 2 - the baseline and run 4 - best
 #### Base run
 
 <figure>
-  <img src="./AML-Rain-LSTM/Plots/run2.png" alt="fig1"/>
+  <img src="./Plots/run2.png" alt="fig1"/>
   <figcaption>Figure 1: Base run using all data (run 2 from Neptune)</figcaption>
 </figure> <br>
 <br>
@@ -105,7 +105,7 @@ slower to train as the data size grew by around 56%, thus, the loss weighting me
 #### Best run
 
 <figure>
-  <img src="./AML-Rain-LSTM/Plots/run4.png" alt="fig2"/>
+  <img src="./Plots/run4.png" alt="fig2"/>
   <figcaption>Figure 2: Run with a positive weight in the loss function (run 4 from Neptune)</figcaption>
 </figure> <br>
 <br>
