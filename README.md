@@ -35,14 +35,14 @@ Extra care is taken to avoid any data leakage. Notebook runs once and saves the 
 
 ## Report
 
-### **Motivation**  
+### Motivation  
 <div align="justify">
 This data is of a time series nature. It is reasonable to assume that the weather inhibits patterns over
 several days therefore modelling this data with a model built for sequential data could work. A single
 layer LSTM Neural Network is chosen as it is widely used and is often successful.
 </div>
 
-### **Data transformation & LSTM settings**  
+### Data transformation & LSTM settings  
 
 <div align="justify">
 The data needs to be reshaped to fit the LSTM input requirements. First, the dataset is split by city.
@@ -56,7 +56,7 @@ function for training. The network is trained for 500 epochs in batches of 128 w
 loss values and the performance metrics.
 </div>
 
-### **Results**  
+### Results  
 <div align="justify">
 There were 5 different model runs in total. Each run was a slight modification of the previous one in effort
 to improve performance. Two of these runs (run 2 - the baseline and run 4 - best run) are described below.
@@ -130,3 +130,14 @@ got smaller. F1 score for the minority group increased by 4p.p
       weighted avg       0.85      0.84      0.85     40699
                 
     Table 2: Classification report for the best run
+
+### Final thoughts
+
+<div align="justify">
+Performance of the LSTM ANN is not much different from what alternative methods such as XGBoost can achieve.
+The default LSTM suffered from class imbalance issues which were partially rectified by including a weight
+term in the loss function. The model could possibly be improved further by constructing a more complex ANN
+architecture, though significant performance gains are not to be expected. There is simply not enough explanatory
+power in the given features.
+</div>
+
