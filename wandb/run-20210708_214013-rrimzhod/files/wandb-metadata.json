@@ -1,0 +1,24 @@
+{
+    "os": "Linux-5.4.0-77-generic-x86_64-with-glibc2.29",
+    "python": "3.8.10",
+    "heartbeatAt": "2021-07-08T20:40:15.858113",
+    "startedAt": "2021-07-08T20:40:13.248190",
+    "docker": null,
+    "cpu_count": 4,
+    "cuda": null,
+    "args": [
+        "-f",
+        "/home/vinas/.local/share/jupyter/runtime/kernel-20c73594-5c7e-4aa4-9bcb-81002d911431.json"
+    ],
+    "state": "running",
+    "program": "Public/RainAustralia/main.ipynb",
+    "root": "/home/vinas/Documents/GitHub/Public/RainAustralia",
+    "git": {
+        "remote": "https://github.com/vinas94/RainAustralia.git",
+        "commit": "39bf21e393ac93188aa711af27884a6de83aebfb"
+    },
+    "email": "56231441+vinas94@users.noreply.github.com",
+    "host": "zenbook-deluxe",
+    "username": "vinas",
+    "executable": "/usr/bin/python3"
+}

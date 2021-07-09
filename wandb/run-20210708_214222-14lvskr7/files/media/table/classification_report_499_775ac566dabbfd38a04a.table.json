@@ -1,0 +1,1 @@
+{"columns": ["class", "precision", "recall", "f1-score", "support"], "data": [["0.0", 0.82, 0.96, 0.89, 658], ["1.0", 0.8, 0.44, 0.57, 242], ["accuracy", 0.82, 0.82, 0.82, 900], ["macro avg", 0.81, 0.7, 0.73, 900], ["weighted avg", 0.82, 0.82, 0.8, 900]]}

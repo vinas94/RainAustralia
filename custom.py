@@ -3,6 +3,7 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 from datetime import datetime
+from benedict import benedict
 import torch
 from torch import nn
 from torch.utils.data import Dataset
@@ -110,7 +111,7 @@ def transform_to_TS(X, y, n=14):
 
 
 def get_predictions(X, model=None):
-    outputs = model(torch.tensor(X, dtype=torch.float32))
+    outputs = model(X)
     return torch.sigmoid(outputs).round().squeeze().detach().numpy()
 
 
@@ -138,22 +139,64 @@ def plot_conf_matrix(y_true, y_pred, cmap='viridis', normalise=None, annot=True,
         spine.set_visible(True)
         
         
-def class_report(y_true, y_pred):
-    clr = pd.DataFrame(classification_report(y_true, y_pred, output_dict=True)).round(2)
-    clr.insert(clr.shape[1]-3, '', np.repeat('', 4))
-    clr.iloc[[0,1,3], clr.shape[1]-3] = ''
-    return clr.T
+def class_report(y_true, y_pred, reset_index=False):
+    clr = pd.DataFrame(classification_report(y_true, y_pred, output_dict=True)).round(2).T
+    clr['support'][-3] = clr['support'][-1]
+    clr['support'] = clr['support'].astype(int)
+    if reset_index:
+        clr = clr.reset_index()
+        clr.columns = ['class', 'precision', 'recall', 'f1-score', 'support']
+    return clr
 
 
-def del_dir(run, directory, path=''):
-    structure = run.get_structure()
-    namespace = structure[directory]
-    files = []
-    for k, v in namespace.items():
-        if isinstance(v, dict):
-            del_namespace(run, directory, v, path+'/'+k)
-        else:
-            files.append(directory+path+'/'+k)
-            
+def del_dir(run, directory):
+    
+    structure = benedict(run.get_structure())
+    namespace = benedict()
+    namespace['.'.join(directory.split('/'))] = structure['.'.join(directory.split('/'))]
+    
+    def get_dirs(run, namespace, path='', files=[]):
+        for k, v in namespace.items():
+            if isinstance(v, dict):
+                get_dirs(run, v, path+'/'+k, files)
+            else:
+                files.append(path+'/'+k)
+
+        return files
+    
+    files = get_dirs(run, namespace)
     for i in files:
         run.pop(i)
+        
+    files = []
+    
+    
+def get_dir(run, directory):
+    
+    structure = benedict(run.get_structure())
+    namespace = benedict()
+    namespace['.'.join(directory.split('/'))] = structure['.'.join(directory.split('/'))]
+
+    def get_dirs(run, namespace, path='', files=[]):
+        for k, v in namespace.items():
+            if isinstance(v, dict):
+                get_dirs(run, v, path+'/'+k, files)
+            else:
+                files.append(path+'/'+k)
+
+        return files
+
+    files = get_dirs(run, namespace)
+    short_files = [x[len('.'.join('params'.split('/')[:-1]))+1:] for x in files]
+    d = benedict()
+    for i in range(len(files)):
+        try:
+            try:
+                d[short_files[i].split('/')[1:]] = run[files[i]].fetch()
+            except:
+                d[short_files[i].split('/')[1:]] = run[files[i]].fetch_values()['value'].to_numpy()
+        except:
+            pass
+        
+    files = []
+    return d
