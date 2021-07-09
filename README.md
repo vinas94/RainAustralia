@@ -59,7 +59,7 @@ loss values and the performance metrics.
 ### Results  
 <div align="justify">
 There were 5 different model runs in total. Each run was a slight modification of the previous one in effort
-to improve performance. Two of these runs (_lively-voice-2_ - the baseline and _autumn-gorge-4_ - best run) are described below.
+to improve performance. Two of these runs (__lively-voice-2__ - the baseline and __autumn-gorge-4__ - best run) are described below.
 </div>
 
 #### Base run
