@@ -27,7 +27,7 @@ Extra care is taken to avoid any data leakage. Notebook runs once and saves the 
 - throws it into a dataloader for batched processing
 - sends the data through a training loop
 - a number of custom functions and the LSTM model itself is stored in the `custom.py` script
-- all of the metadata + artefacts (such as loss/accuracy curves) are stored in [wandb](https://wandb.ai/vinas/RainAustralia):
+- all of the metadata (such as loss/accuracy curves) is stored in [wandb](https://wandb.ai/vinas/RainAustralia):
 
 <img src="./Plots/wandb.png">
 
