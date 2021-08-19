@@ -1,4 +1,3 @@
 .ipynb_checkpoints
 wandb/
 __pycache__/
-**/.neptune/
